@@ -25,7 +25,7 @@ function Footer() {
         </div>
 
         <div className="mt-8 pt-8 border-t border-white/10 text-center text-gray-400 text-sm">
-          <p>&copy; 2026 Duckify - A Toys'R'Us Rex Project Prototype. All rights reserved.</p>
+          <p>&copy; 2026 Duckify - A Toys'R'Us Rex Project Prototype</p>
         </div>
       </div>
     </footer>

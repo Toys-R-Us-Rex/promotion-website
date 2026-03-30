@@ -17,25 +17,16 @@ function Hero() {
         </div>
 
         <h1 className="text-6xl md:text-7xl font-bold mb-6 animate-fade-in-up">
-          <span className="bg-gradient-to-r from-primary via-secondary to-primary bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient">
+          <span className="bg-gradient-to-r from-purple-600 via-cyan-400 to-purple-600 bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient">
             Duckify
           </span>
           <br />
-          <span className="text-white">AI-Powered Robotic Paint</span>
+          <span className="text-white">AI-Powered Robotic Painting</span>
         </h1>
 
         <p className="text-xl md:text-2xl text-gray-400 mb-12 max-w-3xl mx-auto leading-relaxed animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
           Watch as artificial intelligence generates artistic textures, intelligently plans painting paths, and a precision robot arm brings each unique duck design to life
         </p>
-
-        <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
-          <button className="px-8 py-4 bg-gradient-to-r from-primary to-secondary text-white font-semibold rounded-lg hover:shadow-lg hover:shadow-primary/50 transition-all duration-300 hover:scale-105">
-            See It In Action
-          </button>
-          <button className="px-8 py-4 bg-white/5 backdrop-blur-sm border border-white/10 text-white font-semibold rounded-lg hover:bg-white/10 transition-all duration-300">
-            Learn More
-          </button>
-        </div>
       </div>
 
       <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
