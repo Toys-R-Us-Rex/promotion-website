@@ -8,47 +8,37 @@ type ModelEntry = {
   view?: ModelViewConfig;
 };
 
+const SHARED_INITIAL_VIEW: ModelViewConfig = {
+  autoFit: true,
+  cameraPosition: [0, 1.4, 8],
+  target: [0, 1, 0],
+  boundsMargin: 1.2,
+  modelRotation: [0, 0, 0],
+  minDistance: 2.5,
+  maxDistance: 40,
+};
+
 const MODELS: ModelEntry[] = [
   {
     title: 'Geisha',
     modelPath: '/models/geisha.glb',
-    view: {
-      autoFit: true,
-      cameraPosition: [0, 1.2, 7],
-      boundsMargin: 1.25,
-    },
+    view: SHARED_INITIAL_VIEW,
   },
   {
     title: 'Batman',
     modelPath: '/models/batmanV2.glb',
-    view: {
-      autoFit: true,
-      cameraPosition: [2.2, 1.4, 4.2],
-      target: [0, 0, 0],
-      modelScale: 1,
-      modelPosition: [0, 0, 0],
-      minDistance: 2.5,
-      maxDistance: 8,
-    },
+    view: SHARED_INITIAL_VIEW,
   },
   {
-    title: 'Spiderman',
-    modelPath: '/models/spiderman.glb',
-    view: {
-      autoFit: false,
-      cameraPosition: [0, 1.6, 180],
-      target: [0, 20, 0],
-      modelScale: 0.95,
-      modelRotation: [Math.PI/5, Math.PI/4, -0.2],
-      modelPosition: [0, 0, 0],
-      minDistance: 2.8,
-      maxDistance: 200,
-    },
+    title: 'Astronaut',
+    modelPath: '/models/astronautV2_shaded.glb',
+    view: SHARED_INITIAL_VIEW,
   },
   {
     title: 'Military',
-    modelPath: '/models/military.glb'
-  }
+    modelPath: '/models/military.glb',
+    view: SHARED_INITIAL_VIEW,
+  },
 ];
 
 function ModelShowcase() {
@@ -59,6 +49,9 @@ function ModelShowcase() {
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
             3D <span className="bg-gradient-to-r from-purple-600 via-cyan-400 to-purple-600 bg-clip-text text-transparent">Models</span>
           </h2>
+          <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+            What our powerful AI can produce
+          </p>
         </div>
 
         <div className="grid gap-6 md:grid-cols-2">

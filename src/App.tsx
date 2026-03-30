@@ -1,5 +1,6 @@
 import Hero from './components/Hero';
 import Process from './components/Process';
+import TryItSection from './components/TryItSection';
 import ModelShowcase from './components/ModelShowcase';
 import VideosSection from './components/VideosSection';
 import Footer from './components/Footer';
@@ -11,6 +12,7 @@ function App() {
       <Process />
       <ModelShowcase />
       <VideosSection />
+      <TryItSection />
       <Footer />
     </div>
   );

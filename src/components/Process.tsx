@@ -25,7 +25,7 @@ const steps = [
   {
     icon: Printer,
     title: '3D Printing',
-    description: 'The design of 3D model provides tools and setup to help the robot achieving its artistic work',
+    description: 'The design of 3D model provides tools and setup to help the robot achieving its artistic work.',
     gradient : 'from-yellow-500 to-orange-500',
     delay: '0.6s'
   }
@@ -40,7 +40,7 @@ function Process() {
             How It <span className="bg-gradient-to-r from-cyan-400 to-emerald-400 bg-clip-text text-transparent">Works</span>
           </h2>
           <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-            Three seamless steps from concept to creation
+            Four seamless steps from concept to creation
           </p>
         </div>
 
