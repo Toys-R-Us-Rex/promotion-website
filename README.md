@@ -1,3 +1,3 @@
-# i
+# Promotion website
 
-[![Open in Bolt](https://bolt.new/static/open-in-bolt.svg)](https://bolt.new/~/sb1-jxhd3tgl)
+This small website, mainly build with the help of LLM and Bolt, has the objective to be our support for promotin our project Duckify to our CEO. 
