@@ -1,80 +1,99 @@
+import { Brain, Route, Cpu, Printer } from 'lucide-react';
+
 const steps = [
   {
-    num: '01',
+    icon: Brain,
     title: 'AI Texture Generation',
-    code: 'NEURAL.GEN',
-    description: 'Neural network synthesizes unique artistic textures optimized for 3D duck surface topology.',
+    description: 'Advanced AI algorithms analyze and generate unique, artistic textures tailored specifically for each duck surface. Every pattern is one-of-a-kind.',
+    gradient: 'from-cyan-500 to-blue-500',
+    delay: '0s'
   },
   {
-    num: '02',
+    icon: Route,
     title: 'Path Planning',
-    code: 'PATH.CALC',
-    description: 'Autonomous path computation ensuring complete surface coverage with collision avoidance.',
+    description: 'Sophisticated algorithms compute the optimal painting path, ensuring every contour and curve is covered with precision and efficiency.',
+    gradient: 'from-emerald-500 to-teal-500',
+    delay: '0.2s'
   },
   {
-    num: '03',
+    icon: Cpu,
     title: 'Robotic Execution',
-    code: 'ARM.EXEC',
-    description: '6-axis robotic arm executes painting sequence with sub-millimeter precision control.',
+    description: 'The robotic arm brings the design to life, executing each brushstroke with mechanical precision and consistency impossible to achieve by hand.',
+    gradient: 'from-orange-500 to-red-500',
+    delay: '0.4s'
   },
   {
-    num: '04',
+    icon: Printer,
     title: '3D Printing',
-    code: 'PRINT.FAB',
-    description: 'Additive manufacturing provides custom tooling and fixtures for automated workflow.',
+    description: 'The design of 3D model provides tools and setup to help the robot achieving its artistic work.',
+    gradient : 'from-yellow-500 to-orange-500',
+    delay: '0.6s'
   }
 ];
 
 function Process() {
   return (
-    <section className="relative py-24 md:py-32">
-      <div className="max-w-[1400px] mx-auto px-8 md:px-16">
-        <div className="mb-16 md:mb-24">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-1 h-1 bg-[#FF6B35]" />
-            <span className="mono text-[11px] tracking-widest text-white/40 uppercase">Process Pipeline</span>
-          </div>
-          <h2 className="text-[clamp(2.5rem,6vw,5rem)] font-black leading-[0.95] tracking-tighter text-white">
-            SYSTEM<br />WORKFLOW
+    <section className="relative py-32 px-6">
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-20">
+          <h2 className="text-5xl md:text-6xl font-bold text-white mb-6">
+            How It <span className="bg-gradient-to-r from-cyan-400 to-emerald-400 bg-clip-text text-transparent">Works</span>
           </h2>
+          <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+            Four seamless steps from concept to creation
+          </p>
         </div>
 
-        <div className="relative">
-          <div className="absolute left-0 top-0 bottom-0 w-[1px] bg-white/5 hidden md:block" />
-
-          <div className="space-y-1">
-            {steps.map((step, index) => (
+        <div className="grid md:grid-cols-2 gap-8">
+          {steps.map((step, index) => {
+            const Icon = step.icon;
+            return (
               <div
                 key={index}
-                className="group relative border-b border-white/5 hover:border-[#FF6B35]/20 transition-colors duration-300"
+                className="relative group animate-fade-in-up"
+                style={{ animationDelay: step.delay }}
               >
-                <div className="relative py-8 md:py-12 grid grid-cols-1 md:grid-cols-[120px_1fr_1fr] gap-6 md:gap-12 items-start">
-                  <div className="flex items-center gap-4 md:gap-6">
-                    <span className="text-5xl md:text-6xl font-black text-white/5 group-hover:text-white/10 transition-colors mono">
-                      {step.num}
-                    </span>
-                    <div className="h-[1px] w-8 bg-white/10 group-hover:bg-[#FF6B35]/40 transition-colors" />
-                  </div>
+                <div className="absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-100 from-white/5 to-white/0 rounded-2xl transition-opacity duration-500" />
 
-                  <div>
-                    <div className="mono text-[10px] tracking-widest text-[#FF6B35]/60 mb-2">
-                      {step.code}
+                <div className="relative h-full p-8 bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl hover:border-white/20 transition-all duration-300">
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className={`w-14 h-14 bg-gradient-to-br ${step.gradient} rounded-xl flex items-center justify-center shadow-lg`}>
+                      <Icon className="w-7 h-7 text-white" />
                     </div>
-                    <h3 className="text-2xl md:text-3xl font-bold text-white mb-3">
-                      {step.title}
-                    </h3>
+                    <span className="text-6xl font-bold text-white/10">
+                      {(index + 1).toString().padStart(2, '0')}
+                    </span>
                   </div>
 
-                  <div>
-                    <p className="text-sm md:text-base text-white/40 leading-relaxed mono">
-                      {step.description}
-                    </p>
-                  </div>
+                  <h3 className="text-2xl font-bold text-white mb-4">
+                    {step.title}
+                  </h3>
 
-                  <div className="absolute left-0 bottom-0 h-[1px] w-0 bg-[#FF6B35]/60 group-hover:w-full transition-all duration-500" />
+                  <p className="text-gray-400 leading-relaxed">
+                    {step.description}
+                  </p>
+
+                  <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-b-2xl"
+                       style={{ background: `linear-gradient(to right, ${step.gradient.includes('cyan') ? '#06b6d4, #3b82f6' : step.gradient.includes('emerald') ? '#10b981, #14b8a6' : step.gradient.includes('hot') ? '#fc7e00, #ff0000' : "#fff200, #fc7e00"})` }}
+                  />
                 </div>
+
+                {index < steps.length - 1 && (
+                  <div className="hidden md:block absolute top-1/2 -right-4 w-8 h-0.5 bg-gradient-to-r from-white/20 to-transparent" />
+                )}
               </div>
-            ))}
+            );
+          })}
+        </div>
+
+        <div className="mt-24 p-12 bg-gradient-to-br from-cyan-500/10 to-emerald-500/10 backdrop-blur-sm border border-white/10 rounded-3xl">
+          <div className="max-w-3xl mx-auto text-center">
+            <h3 className="text-3xl font-bold text-white mb-4">
+              Precision Meets Creativity
+            </h3>
+            <p className="text-lg text-gray-400 leading-relaxed">
+              By combining cutting-edge artificial intelligence with industrial robotics, we've created a system that transforms ordinary rubber ducks into extraordinary art pieces. Each duck is unique, painted with a level of precision and consistency that showcases the best of both human creativity and machine precision.
+            </p>
           </div>
         </div>
       </div>

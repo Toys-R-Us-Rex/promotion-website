@@ -20,15 +20,11 @@ const videos: VideoItem[] = [
 
 function VideosSection() {
   return (
-    <section className="relative py-24 md:py-32 border-t border-white/5">
-      <div className="max-w-[1400px] mx-auto px-8 md:px-16">
-        <div className="mb-16 md:mb-24">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-1 h-1 bg-[#FF6B35]" />
-            <span className="mono text-[11px] tracking-widest text-white/40 uppercase">Live Documentation</span>
-          </div>
-          <h2 className="text-[clamp(2.5rem,6vw,5rem)] font-black leading-[0.95] tracking-tighter text-white">
-            SYSTEM<br />IN ACTION
+    <section className="relative px-6 pb-24">
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-10">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+            Video <span className="bg-gradient-to-r from-purple-600 via-cyan-400 to-purple-600 bg-clip-text text-transparent">Showcase</span>
           </h2>
         </div>
 
@@ -36,17 +32,12 @@ function VideosSection() {
           {videos.map((video) => (
             <div key={video.src} className="w-full md:w-[calc(50%-1rem)] p-4 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm">
               <video
-                className="w-full bg-black"
+                className="w-full rounded-xl bg-slate-900"
                 src={video.src}
                 controls
                 preload="metadata"
               />
-              <div className="p-6 border-t border-white/5">
-                <div className="mono text-[10px] tracking-widest text-[#FF6B35]/60 mb-2">
-                  VIDEO {(index + 1).toString().padStart(2, '0')}
-                </div>
-                <p className="mono text-xs text-white/40">{video.title}</p>
-              </div>
+              <p className="mt-3 text-center text-gray-300">{video.title}</p>
             </div>
           ))}
         </div>

@@ -153,16 +153,15 @@ function TryItSection() {
   };
 
   return (
-    <section className="relative py-24 md:py-32">
-      <div className="mx-auto max-w-[1400px] px-8 md:px-16">
-        <div className="mb-16 md:mb-24">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-1 h-1 bg-[#FF6B35]" />
-            <span className="mono text-[11px] tracking-widest text-white/40 uppercase">Interactive Demo</span>
-          </div>
-          <h2 className="text-[clamp(2.5rem,6vw,5rem)] font-black leading-[0.95] tracking-tighter text-white">
-            GENERATE<br />PROTOTYPE
+    <section className="relative px-6 pb-24">
+      <div className="mx-auto max-w-7xl rounded-3xl border border-cyan-300/20 bg-gradient-to-br from-slate-950/90 via-slate-900/70 to-cyan-950/25 p-6 md:p-8">
+        <div className="mb-6 text-center">
+          <h2 className="text-4xl font-bold text-white md:text-5xl">
+            Try It <span className="bg-gradient-to-r from-cyan-300 via-emerald-300 to-cyan-300 bg-clip-text text-transparent">Now</span>
           </h2>
+          <p className="mx-auto mt-3 max-w-3xl text-gray-300">
+            Want to have your dream duck be real ?
+          </p>
         </div>
 
         <div className="grid gap-6 lg:grid-cols-[1.1fr_1fr]">
@@ -205,15 +204,19 @@ function TryItSection() {
                     </p>
                   </div>
                 </div>
-              ) : (
-                <div className="text-center">
-                  <div className="w-12 h-12 border border-dashed border-white/10 mx-auto mb-4" />
-                  <p className="mono text-xs text-white/30">
-                    AWAITING INPUT
-                  </p>
-                </div>
-              )}
-            </div>
+              </div>
+            ) : selectedModel ? (
+              <ModelWidget
+                title={selectedModel.title}
+                modelPath={selectedModel.modelPath}
+                caption="Selected from preset demo library"
+                view={TRY_IT_VIEW}
+              />
+            ) : (
+              <div className="flex h-full min-h-[446px] items-center justify-center rounded-3xl border border-dashed border-white/20 bg-slate-900/40 p-6 text-center text-gray-400">
+                Submit a prompt to reveal a generated-style preview.
+              </div>
+            )}
           </div>
         </div>
       </div>

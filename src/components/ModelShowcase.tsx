@@ -43,16 +43,15 @@ const MODELS: ModelEntry[] = [
 
 function ModelShowcase() {
   return (
-    <section className="relative py-24 md:py-32 border-t border-white/5">
-      <div className="max-w-[1400px] mx-auto px-8 md:px-16">
-        <div className="mb-16 md:mb-24">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-1 h-1 bg-[#FF6B35]" />
-            <span className="mono text-[11px] tracking-widest text-white/40 uppercase">Output Gallery</span>
-          </div>
-          <h2 className="text-[clamp(2.5rem,6vw,5rem)] font-black leading-[0.95] tracking-tighter text-white">
-            3D MODELS
+    <section className="relative px-6 pb-24">
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-10">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+            3D <span className="bg-gradient-to-r from-purple-600 via-cyan-400 to-purple-600 bg-clip-text text-transparent">Models</span>
           </h2>
+          <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+            What our powerful AI can produce
+          </p>
         </div>
 
         <div className="grid gap-6 md:grid-cols-4">

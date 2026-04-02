@@ -1,42 +1,31 @@
-import { Github as GithubIcon } from 'lucide-react';
+import { GithubIcon} from 'lucide-react';
 
 function Footer() {
   return (
-    <footer className="relative border-t border-white/5">
-      <div className="max-w-[1400px] mx-auto px-8 md:px-16 py-16 md:py-24">
-        <div className="grid md:grid-cols-2 gap-12 mb-12">
-          <div>
-            <h3 className="text-4xl md:text-5xl font-black text-white mb-3">
-              DUCKIFY
+    <footer className="relative py-12 px-6 border-t border-white/10">
+      <div className="max-w-7xl mx-auto">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+          <div className="text-center md:text-left">
+            <h3 className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-emerald-400 bg-clip-text text-transparent mb-2">
+              Duckify by Toys'R'Us Rex
             </h3>
-            <p className="mono text-xs text-white/40 leading-relaxed max-w-md">
-              AI-powered robotic painting system developed by Toys'R'Us Rex. Combining neural network texture generation with industrial robotic precision.
+            <p className="text-gray-400">
+              Where AI creativity meets robotic precision
             </p>
           </div>
 
-          <div className="flex items-start justify-end">
+          <div className="flex gap-4">
             <a
               href="https://github.com/Toys-R-Us-Rex/Duckify"
-              className="group flex items-center gap-3 border border-white/10 px-6 py-3 transition-colors hover:border-[#FF6B35]/40"
+              className="w-12 h-12 flex items-center justify-center bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg hover:bg-white/10 hover:border-cyan-400/50 transition-all duration-300 group"
             >
-              <GithubIcon className="w-4 h-4 text-white/40 group-hover:text-white/60 transition-colors" />
-              <span className="mono text-xs text-white/40 group-hover:text-white/60 transition-colors">
-                VIEW SOURCE
-              </span>
+              <GithubIcon className="w-5 h-5 text-gray-400 group-hover:text-cyan-400 transition-colors" />
             </a>
           </div>
         </div>
 
-        <div className="pt-8 border-t border-white/5">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="mono text-[10px] text-white/30">
-              &copy; 2026 DUCKIFY - TOYS'R'US REX PROJECT
-            </p>
-            <div className="flex items-center gap-2">
-              <div className="w-1 h-1 bg-[#FF6B35]/60" />
-              <span className="mono text-[10px] text-white/30">PROTOTYPE V1.0</span>
-            </div>
-          </div>
+        <div className="mt-8 pt-8 border-t border-white/10 text-center text-gray-400 text-sm">
+          <p>&copy; 2026 Duckify - A Toys'R'Us Rex Project Prototype</p>
         </div>
       </div>
     </footer>

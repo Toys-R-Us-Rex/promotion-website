@@ -106,11 +106,13 @@ function ModelWidget({ modelPath, title, caption, view }: ModelWidgetProps) {
   }, [modelPath]);
 
   return (
-    <article className="border border-white/5 bg-[#0a0a0a] overflow-hidden">
-      <div className="h-[360px] overflow-hidden border-b border-white/5 bg-black">
+    <article className="rounded-3xl border border-white/10 bg-white/5 p-4 backdrop-blur-sm">
+      <h3 className="flex h-12 items-center justify-center text-center text-xl font-semibold text-white">{title}</h3>
+
+      <div className="mt-4 h-[320px] overflow-hidden rounded-2xl border border-white/10 bg-slate-900/80">
         {status === 'ready' && scene && (
           <Canvas camera={{ position: cameraPosition, fov: cameraFov }}>
-            <color attach="background" args={['#000000']} />
+            <color attach="background" args={['#0f172a']} />
             <ambientLight intensity={0.8} />
             <directionalLight position={[3, 5, 4]} intensity={1.2} />
             <pointLight position={[-3, 2, -2]} intensity={0.6} />
@@ -134,28 +136,25 @@ function ModelWidget({ modelPath, title, caption, view }: ModelWidgetProps) {
         )}
 
         {status === 'checking' && (
-          <div className="flex h-full w-full items-center justify-center px-6 text-center mono text-xs text-white/30">
-            LOADING MODEL...
+          <div className="flex h-full w-full items-center justify-center px-6 text-center text-gray-300">
+            Checking model file...
           </div>
         )}
 
         {status === 'missing' && (
-          <div className="flex h-full w-full items-center justify-center px-6 text-center mono text-xs text-white/30">
-            MODEL NOT FOUND: {modelPath}
+          <div className="flex h-full w-full items-center justify-center px-6 text-center text-gray-300">
+            Missing model at <span className="mx-1 text-white">{modelPath}</span>
           </div>
         )}
 
         {status === 'invalid' && (
-          <div className="flex h-full w-full items-center justify-center px-6 text-center mono text-xs text-white/30">
-            INVALID GLB FILE: {modelPath}
+          <div className="flex h-full w-full items-center justify-center px-6 text-center text-gray-300">
+            File at <span className="mx-1 text-white">{modelPath}</span> is not a valid GLB.
           </div>
         )}
       </div>
 
-      <div className="p-6">
-        <h3 className="text-lg font-bold text-white mb-1">{title}</h3>
-        {caption && <p className="mono text-[10px] text-white/30">{caption}</p>}
-      </div>
+      {caption && <p className="mt-3 text-sm text-gray-400">{caption}</p>}
     </article>
   );
 }
