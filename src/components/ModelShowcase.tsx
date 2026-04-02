@@ -20,25 +20,25 @@ const SHARED_INITIAL_VIEW: ModelViewConfig = {
 
 const MODELS: ModelEntry[] = [
   {
-    title: 'Geisha',
-    modelPath: '/models/geisha.glb',
-    view: SHARED_INITIAL_VIEW,
-  },
-  {
-    title: 'Batman',
-    modelPath: '/models/batmanV2.glb',
-    view: SHARED_INITIAL_VIEW,
-  },
-  {
-    title: 'Astronaut',
-    modelPath: '/models/astronautV2_shaded.glb',
-    view: SHARED_INITIAL_VIEW,
-  },
-  {
     title: 'Military',
     modelPath: '/models/military.glb',
     view: SHARED_INITIAL_VIEW,
   },
+  {
+    title: 'Superman',
+    modelPath: '/models/supermanV2.glb',
+    view: SHARED_INITIAL_VIEW,
+  },
+  {
+    title: 'Knight',
+    modelPath: '/models/knightV2.glb',
+    view: SHARED_INITIAL_VIEW,
+  },
+  {
+    title: 'Pikachu',
+    modelPath: '/models/pikachuV2.glb',
+    view: SHARED_INITIAL_VIEW,
+  }
 ];
 
 function ModelShowcase() {
@@ -54,7 +54,7 @@ function ModelShowcase() {
           </p>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-2">
+        <div className="grid gap-6 md:grid-cols-4">
           {MODELS.map((model) => (
             <ModelWidget
               key={model.modelPath}

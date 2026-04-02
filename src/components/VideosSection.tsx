@@ -12,6 +12,10 @@ const videos: VideoItem[] = [
     title: 'The robot can fluently paint on the duck',
     src: '/videos/Robot_paint.mp4',
   },
+  {
+    title: 'The complete painting process',
+    src: '/videos/whole_process.mp4',
+  },
 ];
 
 function VideosSection() {
@@ -24,9 +28,9 @@ function VideosSection() {
           </h2>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="flex flex-wrap gap-8 justify-center">
           {videos.map((video) => (
-            <div key={video.src} className="p-4 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm">
+            <div key={video.src} className="w-full md:w-[calc(50%-1rem)] p-4 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm">
               <video
                 className="w-full rounded-xl bg-slate-900"
                 src={video.src}

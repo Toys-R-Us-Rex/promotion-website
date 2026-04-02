@@ -1,4 +1,4 @@
-import { FormEvent, useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import ModelWidget from './ModelWidget';
 import type { ModelViewConfig } from './ModelWidget';
 
@@ -10,8 +10,8 @@ type DemoModel = {
 
 type DemoState = 'idle' | 'thinking' | 'rendering' | 'done';
 
-const THINKING_DELAY_MS = 600;
-const REVEAL_DELAY_MS = 3200;
+const THINKING_DELAY_MS = 20500;
+const REVEAL_DELAY_MS = 20500;
 
 const PRESET_MODELS: DemoModel[] = [
   { title: 'Astronaut', modelPath: '/models/astronautV2_shaded.glb', keywords: ['space', 'astronaut', 'moon', 'nasa'] },
@@ -22,10 +22,10 @@ const PRESET_MODELS: DemoModel[] = [
   { title: 'Military', modelPath: '/models/military.glb', keywords: ['military', 'soldier', 'army', 'combat'] },
   { title: 'Minecraft', modelPath: '/models/minecraftV2.glb', keywords: ['minecraft', 'blocky', 'voxel', 'cube'] },
   { title: 'Pikachu', modelPath: '/models/pikachuV2.glb', keywords: ['pikachu', 'pokemon', 'electric', 'cute'] },
-  { title: 'Pirate', modelPath: '/models/pirateV2.glb', keywords: ['pirate', 'ship', 'captain', 'ocean'] },
   { title: 'Spiderman', modelPath: '/models/spiderman.glb', keywords: ['spiderman', 'spider', 'marvel', 'web'] },
   { title: 'Superman', modelPath: '/models/supermanV2.glb', keywords: ['superman', 'krypton', 'cape', 'dc'] },
-  { title: 'Wizard', modelPath: '/models/wizardV2.glb', keywords: ['wizard', 'magic', 'mage', 'spell'] },
+  { title: 'Army', modelPath: '/models/army.glb', keywords: ['army', 'soldier', 'military', 'combat'] },
+  { title: 'Construction Worker', modelPath: '/models/consworkerV2.glb', keywords: ['construction', 'worker', 'builder', 'helmet'] },
 ];
 
 const TRY_IT_VIEW: ModelViewConfig = {
@@ -38,11 +38,17 @@ const TRY_IT_VIEW: ModelViewConfig = {
   maxDistance: 40,
 };
 
+const WAITING_VIDEO_SRC = '/videos/accelerated_duck_3d_impression.mp4';
+
 const PROMPT_SUGGESTIONS = [
   'A futuristic space explorer',
-  'A medieval warrior with armor',
-  'A comic superhero with a cape',
-  'A magical fantasy character',
+  'A dark caped vigilante hero',
+  'A brave firefighter in action',
+  'A traditional Japanese geisha',
+  'A blocky Minecraft character',
+  'A web-slinging spider hero',
+  'A military soldier',
+  'A construction worker with a helmet',
 ];
 
 function hashToIndex(value: string, max: number) {
@@ -84,7 +90,6 @@ function pickPresetModel(prompt: string) {
 }
 
 function TryItSection() {
-  const [prompt, setPrompt] = useState('A friendly superhero in red and blue');
   const [state, setState] = useState<DemoState>('idle');
   const [selectedModel, setSelectedModel] = useState<DemoModel | null>(null);
   const thinkingTimerRef = useRef<number | null>(null);
@@ -103,7 +108,7 @@ function TryItSection() {
       return 'Preview ready';
     }
 
-    return 'Type a prompt and click Try It';
+    return 'Select a prompt to generate a preview';
   }, [state]);
 
   useEffect(() => {
@@ -118,10 +123,8 @@ function TryItSection() {
     };
   }, []);
 
-  const onSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
-    const cleanPrompt = prompt.trim();
+  const handlePromptSelect = (selectedPrompt: string) => {
+    const cleanPrompt = selectedPrompt.trim();
     if (!cleanPrompt) {
       return;
     }
@@ -163,55 +166,43 @@ function TryItSection() {
 
         <div className="grid gap-6 lg:grid-cols-[1.1fr_1fr]">
           <div className="rounded-2xl border border-white/10 bg-slate-900/70 p-5">
-            <form onSubmit={onSubmit} className="space-y-4">
-              <label htmlFor="try-it-prompt" className="block text-sm font-medium text-gray-200">
-                Describe your 3D character
-              </label>
-              <textarea
-                id="try-it-prompt"
-                value={prompt}
-                onChange={(event) => setPrompt(event.target.value)}
-                rows={5}
-                className="w-full rounded-xl border border-white/15 bg-slate-950/80 px-4 py-3 text-gray-100 outline-none transition focus:border-cyan-300/60"
-                placeholder="A duck hired as a doctor"
-              />
-
-              <button
-                type="submit"
-                className="inline-flex items-center rounded-xl bg-cyan-400 px-5 py-2.5 font-semibold text-slate-950 transition hover:bg-cyan-300"
-              >
-                Try It
-              </button>
-            </form>
-
-            <p className="mt-4 text-sm text-cyan-100">{statusLabel}</p>
-
-            <div className="mt-5 flex flex-wrap gap-2">
+            <h3 className="text-lg font-semibold text-gray-200 mb-4">Choose a prompt</h3>
+            <div className="space-y-3">
               {PROMPT_SUGGESTIONS.map((suggestion) => (
                 <button
                   key={suggestion}
                   type="button"
-                  onClick={() => setPrompt(suggestion)}
-                  className="rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs text-gray-300 transition hover:border-cyan-300/60 hover:text-white"
+                  onClick={() => handlePromptSelect(suggestion)}
+                  className="w-full text-left rounded-lg border border-white/15 bg-white/5 px-4 py-3 text-sm text-gray-300 transition hover:border-cyan-300/60 hover:bg-white/10 hover:text-white"
                 >
                   {suggestion}
                 </button>
               ))}
             </div>
+
+            <p className="mt-6 text-sm text-cyan-100">{statusLabel}</p>
           </div>
 
           <div>
             {(state === 'thinking' || state === 'rendering') && !selectedModel ? (
-              <div className="flex h-full min-h-[446px] flex-col items-center justify-center rounded-3xl border border-cyan-300/30 bg-slate-900/60 p-6 text-center">
-                <div className="h-12 w-12 animate-spin rounded-full border-4 border-cyan-200/25 border-t-cyan-300" />
-                <p className="mt-5 text-lg font-semibold text-cyan-100">Generating your 3D preview</p>
-                <p className="mt-2 text-sm text-gray-300">{state === 'thinking' ? 'Analyzing prompt...' : 'Rendering model from preset library...'}</p>
-                <div className="mt-6 h-2 w-full max-w-xs overflow-hidden rounded-full bg-white/10">
-                  <div
-                    className={`h-full rounded-full bg-cyan-300 transition-all duration-500 ${
-                      state === 'thinking' ? 'w-1/3' : 'w-4/5'
-                    }`}
+              <div className="flex h-full min-h-[446px] flex-col overflow-hidden rounded-3xl border border-cyan-300/30 bg-slate-900/60 text-center">
+                <div className="relative flex-1 min-h-[360px] bg-black">
+                  <video
+                    className="absolute inset-0 h-full w-full object-cover"
+                    src={WAITING_VIDEO_SRC}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    preload="auto"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent" />
+                  <div className="absolute inset-x-0 bottom-0 p-6 text-left">
+                    <p className="text-lg font-semibold text-cyan-100">Generating your 3D preview</p>
+                    <p className="mt-2 text-sm text-gray-200">
+                      {state === 'thinking' ? 'Analyzing prompt...' : 'Rendering model from preset library...'}
+                    </p>
+                  </div>
                 </div>
               </div>
             ) : selectedModel ? (

@@ -1,5 +1,3 @@
-import { Sparkles } from 'lucide-react';
-
 function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden px-6">
@@ -12,7 +10,7 @@ function Hero() {
 
       <div className="relative z-10 text-center max-w-5xl mx-auto">
         <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full mb-8 animate-fade-in">
-          <Sparkles className="w-4 h-4 text-primary" />
+          <img src="/images/logo.png" alt="Toys'R'Us Rex logo" className="h-4 w-4 rounded-sm object-contain" />
           <span className="text-sm text-gray-300">Toys'R'Us Rex Presents</span>
         </div>
 
